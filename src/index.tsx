@@ -1,14 +1,24 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import './i18n'
+import {createStore} from 'redux'
+import reducer from './redux/reducer'
+import {Provider} from 'react-redux'
+import {composeWithDevTools} from 'redux-devtools-extension'
+
+const store = createStore(reducer, composeWithDevTools())
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <Suspense fallback='loading'>
+        <App />
+      </Suspense>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root'),
 )
 

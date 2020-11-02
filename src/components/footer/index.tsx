@@ -1,6 +1,9 @@
 import React, {useCallback, useState} from 'react'
 import {Box, Button, makeStyles, TextField, Theme} from '@material-ui/core'
-import { useTranslation } from 'react-i18next'
+import {useTranslation} from 'react-i18next'
+import {selectLanguage} from '../../redux/selectors'
+import {useDispatch, useSelector} from 'react-redux'
+import { SetLanguageAction } from '../../redux/actions'
 
 const pageStyles = makeStyles((theme: Theme) => ({
   footer: {
@@ -21,13 +24,12 @@ const pageStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-type Languages = 'cs' | 'en'
-
 const Footer = () => {
   const classes = pageStyles()
-  const { t, i18n } = useTranslation();
+  const dispatch = useDispatch()
+  const currentLanguage = useSelector(selectLanguage)
+  const {t, i18n} = useTranslation()
   const [apiKey, setApiKey] = useState('')
-  const [currentLanguage, setCurrentLanguage] = useState<Languages>('en')
 
   const handleUseApiKey = useCallback(() => {
     //TODO
@@ -36,28 +38,28 @@ const Footer = () => {
   const handleLanguageChange = useCallback(() => {
     switch (currentLanguage) {
       case 'cs': {
-        setCurrentLanguage('en')
+        dispatch(SetLanguageAction('en'))
         i18n.changeLanguage('en')
         break
       }
       case 'en': {
-        setCurrentLanguage('cs')
+        dispatch(SetLanguageAction('cs'))
         i18n.changeLanguage('cs')
         break
       }
       default: {
-        setCurrentLanguage('en')
+        dispatch(SetLanguageAction('en'))
         i18n.changeLanguage('en')
       }
     }
-  }, [currentLanguage, i18n])
+  }, [currentLanguage, i18n, dispatch])
 
   return (
     <Box className={classes.footer}>
       <Box className={classes.inputBox}>
         <Box marginX={1}>
           <TextField
-            id='outlined-basic'
+            id={'outlined-basic'}
             variant={'outlined'}
             label={t('apiKey')}
             size={'small'}
@@ -66,7 +68,7 @@ const Footer = () => {
             onChange={(event) => setApiKey(event.target.value)}
           />
         </Box>
-        <Button variant='contained' onClick={handleUseApiKey}>
+        <Button variant={'contained'} onClick={handleUseApiKey}>
           {t('use')}
         </Button>
       </Box>

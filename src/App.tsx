@@ -1,12 +1,8 @@
-import React, {Suspense} from 'react'
+import React from 'react'
 import DataBrowser from './pages/data-browser'
 
 const App = () => {
-  return (
-    <Suspense fallback='loading'>
-      <DataBrowser />
-    </Suspense>
-  )
+  return <DataBrowser />
 }
 
 export default App
