@@ -1,4 +1,6 @@
 {
     "use": "Use",
-    "apiKey": "Api key"
+    "apiKey": "Api key",
+    "header": "Parking",
+    "freeSpots": "free spots"
 }

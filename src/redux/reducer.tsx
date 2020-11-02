@@ -3,10 +3,12 @@ import {CommonActions, CommonActionTypes} from './actions'
 
 export interface ReduxStoreType {
   language: Languages
+  apiKey: string
 }
 
 const initialState = {
   language: 'en' as Languages,
+  apiKey: '',
 }
 
 export default function reducer(

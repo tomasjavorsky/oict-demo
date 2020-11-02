@@ -1,5 +1,6 @@
 import React from 'react'
 import {Box, Button, makeStyles, Theme, Typography} from '@material-ui/core'
+import { useTranslation } from 'react-i18next'
 
 const pageStyles = makeStyles((theme: Theme) => ({
   boxBody: {
@@ -16,15 +17,29 @@ const pageStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  name: {
+    color: 'black',
+  },
+  description: {
+    color: 'gray',
+    fontSize: 12,
+  },
 }))
 
-const DataBox = () => {
+interface DataBoxProps {
+  name: string
+  description: string
+}
+
+const DataBox = ({name, description}: DataBoxProps) => {
   const classes = pageStyles()
+  const {t} = useTranslation()
+
   return (
     <Button className={classes.boxBody}>
       <Box className={classes.boxContent}>
-        <Typography>{'Title'}</Typography>
-        <Typography>{'Basic info'}</Typography>
+        <Typography className={classes.name}>{name}</Typography>
+        <Typography className={classes.description}>{`${t('freeSpots')}: ${description}`}</Typography>
       </Box>
     </Button>
   )

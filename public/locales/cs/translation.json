@@ -1,4 +1,6 @@
 {
     "use": "Použít",
-    "apiKey": "Api klíč"
+    "apiKey": "Api klíč",
+    "header": "Parkování",
+    "freeSpots": "volná místa"
 }
