@@ -661,7 +661,7 @@ export const mockData = {
         },
         id: 534012,
         name: 'Žizkov 3',
-        num_of_free_places: 78,
+        num_of_free_places: 17,
         num_of_taken_places: 63,
         updated_at: '2019-05-18T07:38:37.000Z',
         total_num_of_places: 63,

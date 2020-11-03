@@ -5,5 +5,7 @@
     "freeSpots": "free spots",
     "close": "Close",
     "city": "City",
-    "address": "Address"
+    "address": "Address",
+    "type": "Type",
+    "occupancy": "Occupancy"
 }

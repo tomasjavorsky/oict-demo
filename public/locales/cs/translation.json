@@ -5,5 +5,7 @@
     "freeSpots": "volná místa",
     "close": "Zavřít",
     "city": "Město",
-    "address": "Adresa"
+    "address": "Adresa",
+    "type": "Typ",
+    "occupancy": "Obsazenost"
 }
