@@ -3,7 +3,11 @@ import {Box, Button, makeStyles, TextField, Theme} from '@material-ui/core'
 import {useTranslation} from 'react-i18next'
 import {selectLanguage} from '../../redux/selectors'
 import {useDispatch, useSelector} from 'react-redux'
-import {GetDataAction, SetLanguageAction} from '../../redux/actions'
+import {
+  ClearApiKeyAction,
+  GetDataAction,
+  SetLanguageAction,
+} from '../../redux/actions'
 
 const styles = makeStyles((theme: Theme) => ({
   footer: {
@@ -34,6 +38,8 @@ const Footer = () => {
   const handleUseApiKey = useCallback(() => {
     if (apiKey) {
       dispatch(GetDataAction(apiKey))
+    } else {
+      dispatch(ClearApiKeyAction())
     }
   }, [dispatch, apiKey])
 

@@ -32,10 +32,9 @@ interface DataBoxProps {
   name: string
   description: string
   data: ParkingSpotData
-  index: number
 }
 
-const DataBox = ({name, description, data, index}: DataBoxProps) => {
+const DataBox = ({name, description, data}: DataBoxProps) => {
   const classes = styles()
   const {t} = useTranslation()
   const [showDetail, setShowDetail] = useState(false)
@@ -47,7 +46,7 @@ const DataBox = ({name, description, data, index}: DataBoxProps) => {
   }, [])
 
   return (
-      <div key={name}>
+      <>
         {showDetail && (
           <DetailModal
             properties={data.properties}
@@ -62,7 +61,7 @@ const DataBox = ({name, description, data, index}: DataBoxProps) => {
             )}: ${description}`}</Typography>
           </Box>
         </Button>
-      </div>
+      </>
   )
 }
 

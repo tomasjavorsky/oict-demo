@@ -8,6 +8,7 @@ export enum CommonActionTypes {
   GET_DATA = 'SET_API_KEY',
   GET_DATA_SUCCESS = 'GET_DATA_SUCCESS',
   GET_DATA_FAILURE = 'GET_DATA_FAILURE',
+  CLEAR_API_KEY = 'CLEAR_API_KEy',
 }
 
 interface SetLanguage {
@@ -35,9 +36,13 @@ interface GetDataFailure {
   type: typeof CommonActionTypes.GET_DATA_FAILURE
 }
 
+interface ClearApiKey {
+  type: typeof CommonActionTypes.CLEAR_API_KEY
+}
+
 // ---------- Actions ----------
 
-export type CommonActions = SetLanguage | GetData | GetDataSuccess | GetDataFailure
+export type CommonActions = SetLanguage | GetData | GetDataSuccess | GetDataFailure | ClearApiKey
 
 export const SetLanguageAction = (language: Languages) => ({
   type: CommonActionTypes.SET_LANGUAGE,
@@ -62,4 +67,8 @@ export const GetDataSuccessAction = (data: ParkingSpotData) => ({
 
 export const GetDataFailureAction = () => ({
   type: CommonActionTypes.GET_DATA_FAILURE,
+})
+
+export const ClearApiKeyAction = () => ({
+  type: CommonActionTypes.CLEAR_API_KEY
 })

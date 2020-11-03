@@ -71,26 +71,30 @@ const DataBrowser = () => {
           {!hasError &&
             !isLoading &&
             parkingSpotData?.map((parkingSpot, index) => (
-              <DataBox
-                index={index}
-                name={parkingSpot.properties.name}
-                description={String(parkingSpot.properties.num_of_free_places)}
-                data={parkingSpot}
-              />
+              <div key={`${parkingSpot.properties.name}`}>
+                <DataBox
+                  name={parkingSpot.properties.name}
+                  description={String(
+                    parkingSpot.properties.num_of_free_places,
+                  )}
+                  data={parkingSpot}
+                />
+              </div>
             ))}
         </>
       )
     } else {
       return mockData.features.map((feature, index) => (
-        <DataBox
-          index={index}
-          name={feature.properties.name}
-          description={String(feature.properties.num_of_free_places)}
-          data={feature}
-        />
+        <div key={`${feature.properties.name}`}>
+          <DataBox
+            name={feature.properties.name}
+            description={String(feature.properties.num_of_free_places)}
+            data={feature}
+          />
+        </div>
       ))
     }
-  }, [hasApiKey, hasError, isLoading, t, classes.center])
+  }, [hasApiKey, hasError, isLoading, t, classes.center, parkingSpotData])
 
   return (
     <Box className={classes.outerSpace}>

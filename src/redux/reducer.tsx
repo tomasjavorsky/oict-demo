@@ -1,10 +1,9 @@
-
 import {Languages, ParkingSpotData} from '../types'
 import {CommonActions, CommonActionTypes} from './actions'
 
 export interface ReduxStoreType {
   language: Languages
-  apiKey: string
+  apiKey: string | null
   isLoading: boolean
   error: boolean
   data: ParkingSpotData[] | null
@@ -12,7 +11,7 @@ export interface ReduxStoreType {
 
 const initialState: ReduxStoreType = {
   language: 'en' as Languages,
-  apiKey: '',
+  apiKey: null,
   isLoading: false,
   error: false,
   data: null,
@@ -53,6 +52,12 @@ export default function reducer(
         ...state,
         isLoading: false,
         error: true,
+      }
+    }
+    case CommonActionTypes.CLEAR_API_KEY: {
+      return {
+        ...state,
+        apiKey: null,
       }
     }
     default:
