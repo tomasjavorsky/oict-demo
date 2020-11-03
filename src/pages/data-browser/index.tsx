@@ -27,7 +27,7 @@ const pageStyles = makeStyles(() => ({
   contentBox: {
     display: 'flex',
     justifyContent: 'space-evenly',
-    alignItems: 'center',
+    alignContent: 'flex-start',
     flexWrap: 'wrap',
     height: '100%',
     overflow: 'scroll',
@@ -46,6 +46,7 @@ const DataBrowser = () => {
         <DataBox
           name={feature.properties.name}
           description={String(feature.properties.num_of_free_places)}
+          data={feature}
         />
       ))
     }

@@ -2,7 +2,7 @@ import React from 'react'
 import {Box, makeStyles, Theme, Typography} from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 
-const pageStyles = makeStyles((theme: Theme) => ({
+const styles = makeStyles((theme: Theme) => ({
     header: {
         display: 'flex',
         justifyContent: 'center',
@@ -15,7 +15,7 @@ const pageStyles = makeStyles((theme: Theme) => ({
 }))
 
 const Header = () => {
-  const classes = pageStyles()
+  const classes = styles()
   const {t} = useTranslation()
 return <Box className={classes.header}><Typography>{t('header')}</Typography></Box>
 }

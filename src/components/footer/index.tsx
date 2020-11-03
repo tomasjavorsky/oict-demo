@@ -5,7 +5,7 @@ import {selectLanguage} from '../../redux/selectors'
 import {useDispatch, useSelector} from 'react-redux'
 import { SetLanguageAction } from '../../redux/actions'
 
-const pageStyles = makeStyles((theme: Theme) => ({
+const styles = makeStyles((theme: Theme) => ({
   footer: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -25,7 +25,7 @@ const pageStyles = makeStyles((theme: Theme) => ({
 }))
 
 const Footer = () => {
-  const classes = pageStyles()
+  const classes = styles()
   const dispatch = useDispatch()
   const currentLanguage = useSelector(selectLanguage)
   const {t, i18n} = useTranslation()

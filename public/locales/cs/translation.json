@@ -2,5 +2,8 @@
     "use": "Použít",
     "apiKey": "Api klíč",
     "header": "Parkování",
-    "freeSpots": "volná místa"
+    "freeSpots": "volná místa",
+    "close": "Zavřít",
+    "city": "Město",
+    "address": "Adresa"
 }

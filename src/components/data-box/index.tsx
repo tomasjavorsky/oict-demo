@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useCallback, useState} from 'react'
 import {Box, Button, makeStyles, Theme, Typography} from '@material-ui/core'
-import { useTranslation } from 'react-i18next'
+import {useTranslation} from 'react-i18next'
+import DetailModal from '../detailModal'
 
-const pageStyles = makeStyles((theme: Theme) => ({
+const styles = makeStyles((theme: Theme) => ({
   boxBody: {
     width: '130px',
     height: '100px',
@@ -10,7 +11,7 @@ const pageStyles = makeStyles((theme: Theme) => ({
     backgroundColor: '#f7f7f7',
     marginBottom: theme.spacing(1),
     '&:hover': {
-      backgroundColor: '#f0f0f0',
+      backgroundColor: '#e0e0e0',
     },
   },
   boxContent: {
@@ -26,22 +27,55 @@ const pageStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
+export interface ParkingSpotData {
+  properties: {
+    parking_type: {
+      description: string
+    }
+    name: string
+    num_of_free_places: number
+    total_num_of_places: number
+    address: {
+      street_address: string
+      address_locality: string
+    }
+  }
+}
+
 interface DataBoxProps {
   name: string
   description: string
+  data: ParkingSpotData
 }
 
-const DataBox = ({name, description}: DataBoxProps) => {
-  const classes = pageStyles()
+const DataBox = ({name, description, data}: DataBoxProps) => {
+  const classes = styles()
   const {t} = useTranslation()
+  const [showDetail, setShowDetail] = useState(false)
+  const handleShowDetail = useCallback(() => {
+    setShowDetail(true)
+  }, [])
+  const handleHideDetail = useCallback(() => {
+    setShowDetail(false)
+  }, [])
 
   return (
-    <Button className={classes.boxBody}>
-      <Box className={classes.boxContent}>
-        <Typography className={classes.name}>{name}</Typography>
-        <Typography className={classes.description}>{`${t('freeSpots')}: ${description}`}</Typography>
-      </Box>
-    </Button>
+    <>
+      {showDetail && (
+        <DetailModal
+          properties={data.properties}
+          handleClose={handleHideDetail}
+        />
+      )}
+      <Button className={classes.boxBody} onClick={handleShowDetail}>
+        <Box className={classes.boxContent}>
+          <Typography className={classes.name}>{name}</Typography>
+          <Typography className={classes.description}>{`${t(
+            'freeSpots',
+          )}: ${description}`}</Typography>
+        </Box>
+      </Button>
+    </>
   )
 }
 

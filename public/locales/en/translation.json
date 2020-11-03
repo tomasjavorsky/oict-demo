@@ -2,5 +2,8 @@
     "use": "Use",
     "apiKey": "Api key",
     "header": "Parking",
-    "freeSpots": "free spots"
+    "freeSpots": "free spots",
+    "close": "Close",
+    "city": "City",
+    "address": "Address"
 }
