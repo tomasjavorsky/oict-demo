@@ -23,6 +23,13 @@ export default function reducer(
         language,
       }
     }
+    case CommonActionTypes.SET_API_KEY: {
+      const {apiKey} = action.payload
+      return {
+        ...state,
+        apiKey,
+      }
+    }
     default:
       return state
   }
