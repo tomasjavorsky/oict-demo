@@ -2,6 +2,7 @@ import React, {useCallback, useState} from 'react'
 import {Box, Button, makeStyles, Theme, Typography} from '@material-ui/core'
 import {useTranslation} from 'react-i18next'
 import DetailModal from '../detailModal'
+import {ParkingSpotData} from '../../types'
 
 const styles = makeStyles((theme: Theme) => ({
   boxBody: {
@@ -27,28 +28,14 @@ const styles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export interface ParkingSpotData {
-  properties: {
-    parking_type: {
-      description: string
-    }
-    name: string
-    num_of_free_places: number
-    total_num_of_places: number
-    address: {
-      street_address: string
-      address_locality: string
-    }
-  }
-}
-
 interface DataBoxProps {
   name: string
   description: string
   data: ParkingSpotData
+  index: number
 }
 
-const DataBox = ({name, description, data}: DataBoxProps) => {
+const DataBox = ({name, description, data, index}: DataBoxProps) => {
   const classes = styles()
   const {t} = useTranslation()
   const [showDetail, setShowDetail] = useState(false)
@@ -60,22 +47,22 @@ const DataBox = ({name, description, data}: DataBoxProps) => {
   }, [])
 
   return (
-    <>
-      {showDetail && (
-        <DetailModal
-          properties={data.properties}
-          handleClose={handleHideDetail}
-        />
-      )}
-      <Button className={classes.boxBody} onClick={handleShowDetail}>
-        <Box className={classes.boxContent}>
-          <Typography className={classes.name}>{name}</Typography>
-          <Typography className={classes.description}>{`${t(
-            'freeSpots',
-          )}: ${description}`}</Typography>
-        </Box>
-      </Button>
-    </>
+      <div key={name}>
+        {showDetail && (
+          <DetailModal
+            properties={data.properties}
+            handleClose={handleHideDetail}
+          />
+        )}
+        <Button className={classes.boxBody} onClick={handleShowDetail}>
+          <Box className={classes.boxContent}>
+            <Typography className={classes.name}>{name}</Typography>
+            <Typography className={classes.description}>{`${t(
+              'freeSpots',
+            )}: ${description}`}</Typography>
+          </Box>
+        </Button>
+      </div>
   )
 }
 

@@ -7,5 +7,6 @@
     "city": "Město",
     "address": "Adresa",
     "type": "Typ",
-    "occupancy": "Obsazenost"
+    "occupancy": "Obsazenost",
+    "fetchError": "Nepodařilo se získat data" 
 }

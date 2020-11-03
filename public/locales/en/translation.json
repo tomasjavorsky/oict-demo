@@ -7,5 +7,6 @@
     "city": "City",
     "address": "Address",
     "type": "Type",
-    "occupancy": "Occupancy"
+    "occupancy": "Occupancy",
+    "fetchError": "Error while fetching data" 
 }

@@ -4,12 +4,13 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import './i18n'
-import {createStore} from 'redux'
+import {applyMiddleware, createStore} from 'redux'
 import reducer from './redux/reducer'
 import {Provider} from 'react-redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
+import { getDataWithApiKey } from './redux/middlewares'
 
-const store = createStore(reducer, composeWithDevTools())
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(getDataWithApiKey)))
 
 ReactDOM.render(
   <Provider store={store}>

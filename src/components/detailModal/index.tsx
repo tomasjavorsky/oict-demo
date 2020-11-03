@@ -1,7 +1,8 @@
 import {Box, Button, makeStyles, Theme, Typography} from '@material-ui/core'
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
-import {ParkingSpotData} from '../data-box'
+import { ParkingSpotData } from '../../types'
+
 
 interface DetailModalProps extends ParkingSpotData {
   handleClose: () => void

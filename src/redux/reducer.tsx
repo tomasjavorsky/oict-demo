@@ -1,14 +1,21 @@
-import {Languages} from '../types'
+
+import {Languages, ParkingSpotData} from '../types'
 import {CommonActions, CommonActionTypes} from './actions'
 
 export interface ReduxStoreType {
   language: Languages
   apiKey: string
+  isLoading: boolean
+  error: boolean
+  data: ParkingSpotData[] | null
 }
 
-const initialState = {
+const initialState: ReduxStoreType = {
   language: 'en' as Languages,
   apiKey: '',
+  isLoading: false,
+  error: false,
+  data: null,
 }
 
 export default function reducer(
@@ -23,11 +30,29 @@ export default function reducer(
         language,
       }
     }
-    case CommonActionTypes.SET_API_KEY: {
+    case CommonActionTypes.GET_DATA: {
       const {apiKey} = action.payload
       return {
         ...state,
         apiKey,
+        isLoading: true,
+        error: false,
+        data: null,
+      }
+    }
+    case CommonActionTypes.GET_DATA_SUCCESS: {
+      const {data} = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        data,
+      }
+    }
+    case CommonActionTypes.GET_DATA_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        error: true,
       }
     }
     default:
